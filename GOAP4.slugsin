@@ -1,0 +1,102 @@
+[INPUT]
+docked@0.0.1
+battery_high@0.0.1
+battery_low@0.0.1
+at_dockingArea@0.0.1
+at_cabinet1@0.0.1
+at_cabinet2@0.0.1
+at_cabinet3@0.0.1
+at_cabinet4@0.0.1
+at_cabinet5@0.0.1
+cabinet1_surveyed@0.0.1
+cabinet2_surveyed@0.0.1
+cabinet3_surveyed@0.0.1
+cabinet4_surveyed@0.0.1
+cabinet5_surveyed@0.0.1
+
+
+[OUTPUT]
+## 0 = No acton, 1 = move1, 2 = move2, 3 = move3, 4 = move4, 5 = move5, 6 = moveToDockingArea
+## 7 = survey1, 8 = survey2, 9 = survey3, 10 = survey4, 11 = survey5,
+## 12 = unDock, 13 = dock, 14 = charge_battery
+action@0.0.14
+action@1
+action@2
+action@3
+
+
+[ENV_TRANS]
+
+| ! $ 1 & ! action@3 & ! action@2 & ! action@1 & ! action@0.0.14 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+
+| ! $ 1 & ! action@3 & ! action@2 & ! action@1 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' 1 1 $ 1 & ! at_cabinet2@0.0.1' 1 $ 1 & ! at_cabinet3@0.0.1' 1 $ 1 & ! at_cabinet4@0.0.1' 1 $ 1 & ! at_cabinet5@0.0.1' 1 $ 1 & ! at_dockingArea@0.0.1' 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! action@3 & ! action@2 & ! ^ action@1 1 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! at_cabinet1@0.0.1' 1 $ 1 & ! ^ at_cabinet2@0.0.1' 1 1 $ 1 & ! at_cabinet3@0.0.1' 1 $ 1 & ! at_cabinet4@0.0.1' 1 $ 1 & ! at_cabinet5@0.0.1' 1 $ 1 & ! at_dockingArea@0.0.1' 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! action@3 & ! action@2 & ! ^ action@1 1 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! at_cabinet1@0.0.1' 1 $ 1 & ! at_cabinet2@0.0.1' 1 $ 1 & ! ^ at_cabinet3@0.0.1' 1 1 $ 1 & ! at_cabinet4@0.0.1' 1 $ 1 & ! at_cabinet5@0.0.1' 1 $ 1 & ! at_dockingArea@0.0.1' 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! action@3 & ! ^ action@2 1 & ! ^ action@1 0 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! at_cabinet1@0.0.1' 1 $ 1 & ! at_cabinet2@0.0.1' 1 $ 1 & ! at_cabinet3@0.0.1' 1 $ 1 & ! ^ at_cabinet4@0.0.1' 1 1 $ 1 & ! at_cabinet5@0.0.1' 1 $ 1 & ! at_dockingArea@0.0.1' 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! action@3 & ! ^ action@2 1 & ! ^ action@1 0 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! at_cabinet1@0.0.1' 1 $ 1 & ! at_cabinet2@0.0.1' 1 $ 1 & ! at_cabinet3@0.0.1' 1 $ 1 & ! at_cabinet4@0.0.1' 1 $ 1 & ! ^ at_cabinet5@0.0.1' 1 1 $ 1 & ! at_dockingArea@0.0.1' 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! action@3 & ! ^ action@2 1 & ! ^ action@1 1 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! at_cabinet1@0.0.1' 1 $ 1 & ! at_cabinet2@0.0.1' 1 $ 1 & ! at_cabinet3@0.0.1' 1 $ 1 & ! at_cabinet4@0.0.1' 1 $ 1 & ! at_cabinet5@0.0.1' 1 $ 1 & ! ^ at_dockingArea@0.0.1' 1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+
+| ! $ 1 & ! action@3 & ! ^ action@2 1 & ! ^ action@1 1 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 0 & ! ^ action@1 0 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 0 & ! ^ action@1 0 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 0 & ! ^ action@1 1 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 0 & ! ^ action@1 1 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' 1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 1 & ! ^ action@1 0 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 1 & ! ^ action@1 0 & ! ^ action@0.0.14 1 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' 1 1 $ 1 & ! ^ battery_low@0.0.1' battery_low@0.0.1 1 $ 1 & ! ^ battery_high@0.0.1' battery_high@0.0.1 1
+| ! $ 1 & ! ^ action@3 1 & ! ^ action@2 1 & ! ^ action@1 1 & ! ^ action@0.0.14 0 1 & & & & & & & & & & & & & $ 1 & ! ^ at_cabinet1@0.0.1' at_cabinet1@0.0.1 1 $ 1 & ! ^ at_cabinet2@0.0.1' at_cabinet2@0.0.1 1 $ 1 & ! ^ at_cabinet3@0.0.1' at_cabinet3@0.0.1 1 $ 1 & ! ^ at_cabinet4@0.0.1' at_cabinet4@0.0.1 1 $ 1 & ! ^ at_cabinet5@0.0.1' at_cabinet5@0.0.1 1 $ 1 & ! ^ at_dockingArea@0.0.1' at_dockingArea@0.0.1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' cabinet1_surveyed@0.0.1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' cabinet2_surveyed@0.0.1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' cabinet3_surveyed@0.0.1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' cabinet4_surveyed@0.0.1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' cabinet5_surveyed@0.0.1 1 $ 1 & ! ^ docked@0.0.1' docked@0.0.1 1 $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ battery_high@0.0.1' 1 1
+
+
+[ENV_INIT]
+$ 1 & ! ^ docked@0.0.1 1 1
+$ 1 & ! cabinet1_surveyed@0.0.1 1
+$ 1 & ! cabinet2_surveyed@0.0.1 1
+$ 1 & ! cabinet3_surveyed@0.0.1 1
+$ 1 & ! cabinet4_surveyed@0.0.1 1
+$ 1 & ! cabinet5_surveyed@0.0.1 1
+$ 1 & ! at_cabinet1@0.0.1 1
+$ 1 & ! at_cabinet2@0.0.1 1
+$ 1 & ! at_cabinet3@0.0.1 1
+$ 1 & ! at_cabinet4@0.0.1 1
+$ 1 & ! at_cabinet5@0.0.1 1
+$ 1 & ! ^ at_dockingArea@0.0.1 1 1
+$ 1 ! & ! ^ battery_low@0.0.1 battery_high@0.0.1 1
+$ 1 & ! battery_low@0.0.1 1
+
+
+[SYS_TRANS]
+
+| ! $ 1 & ! action@3' & ! action@2' & ! action@1' & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! at_cabinet1@0.0.1' 1
+| ! $ 1 & ! action@3' & ! action@2' & ! ^ action@1' 1 & ! ^ action@0.0.14' 0 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! at_cabinet2@0.0.1' 1
+| ! $ 1 & ! action@3' & ! action@2' & ! ^ action@1' 1 & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! at_cabinet3@0.0.1' 1
+| ! $ 1 & ! action@3' & ! ^ action@2' 1 & ! ^ action@1' 0 & ! ^ action@0.0.14' 0 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! at_cabinet4@0.0.1' 1
+| ! $ 1 & ! action@3' & ! ^ action@2' 1 & ! ^ action@1' 0 & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! docked@0.0.1' 1 $ 1 & ! at_cabinet5@0.0.1' 1
+| ! $ 1 & ! action@3' & ! ^ action@2' 1 & ! ^ action@1' 1 & ! ^ action@0.0.14' 0 1 $ 1 & ! at_dockingArea@0.0.1' 1
+| ! $ 1 & ! action@3' & ! ^ action@2' 1 & ! ^ action@1' 1 & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ at_cabinet1@0.0.1' 1 1 $ 1 & ! cabinet1_surveyed@0.0.1' 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 0 & ! ^ action@1' 0 & ! ^ action@0.0.14' 0 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ at_cabinet2@0.0.1' 1 1 $ 1 & ! cabinet2_surveyed@0.0.1' 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 0 & ! ^ action@1' 0 & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ at_cabinet3@0.0.1' 1 1 $ 1 & ! cabinet3_surveyed@0.0.1' 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 0 & ! ^ action@1' 1 & ! ^ action@0.0.14' 0 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ at_cabinet4@0.0.1' 1 1 $ 1 & ! cabinet4_surveyed@0.0.1' 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 0 & ! ^ action@1' 1 & ! ^ action@0.0.14' 1 1 & & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ at_cabinet5@0.0.1' 1 1 $ 1 & ! cabinet5_surveyed@0.0.1' 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 1 & ! ^ action@1' 0 & ! ^ action@0.0.14' 0 1 & $ 1 & ! battery_low@0.0.1' 1 $ 1 & ! ^ docked@0.0.1' 1 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 1 & ! ^ action@1' 0 & ! ^ action@0.0.14' 1 1 & $ 1 & ! docked@0.0.1' 1 $ 1 & ! ^ at_dockingArea@0.0.1' 1 1
+| ! $ 1 & ! ^ action@3' 1 & ! ^ action@2' 1 & ! ^ action@1' 1 & ! ^ action@0.0.14' 0 1 & $ 1 & ! ^ battery_low@0.0.1' 1 1 $ 1 & ! ^ docked@0.0.1' 1 1
+
+## Variable limits: 0<=action'<=14
+| ! action@3' | ! action@2' | ! action@1' | ! action@0.0.14' 0
+
+[SYS_INIT]
+
+$ 1 & ! action@3 & ! action@2 & ! action@1 & ! action@0.0.14 1
+
+## Variable limits: 0<=action<=14
+| ! action@3 | ! action@2 | ! action@1 | ! action@0.0.14 0
+
+[ENV_LIVENESS]
+
+
+
+[SYS_LIVENESS]
+
+& & & & & $ 1 & ! ^ docked@0.0.1' 1 1 $ 1 & ! ^ cabinet1_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet2_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet3_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet4_surveyed@0.0.1' 1 1 $ 1 & ! ^ cabinet5_surveyed@0.0.1' 1 1
+
+

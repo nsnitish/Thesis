@@ -1,0 +1,98 @@
+[INPUT]
+request1@0.0.6
+request1@1
+request1@2
+request2@0.0.6
+request2@1
+request2@2
+request3@0.0.6
+request3@1
+request3@2
+request4@0.0.6
+request4@1
+request4@2
+steps@0.0.20
+steps@1
+steps@2
+steps@3
+steps@4
+pos@0.1.6
+pos@1
+pos@2
+
+
+[OUTPUT]
+
+action@0.0.3
+action@1
+#0 = no motion, 1 = positive, 2 = negative
+
+
+[ENV_TRANS]
+
+| ! $ 1 & ! action@1 & ! action@0.0.3 1 & & & & & $ 13 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 ^ 1 pos@0.1.6 & 1 pos@0.1.6 ^ pos@1 ? 7 & pos@1 ? 7 ^ pos@2 ? 9 & pos@2 ? 9 & ! ^ ? 5 ? 11 & ! ^ ? 4 ? 10 & ! ^ ? 2 ? 8 & ! ^ ? 0 ? 6 1 $ 1 & ! ^ request1@2' request1@2 & ! ^ request1@1' request1@1 & ! ^ request1@0.0.6' request1@0.0.6 1 $ 1 & ! ^ request2@2' request2@2 & ! ^ request2@1' request2@1 & ! ^ request2@0.0.6' request2@0.0.6 1 $ 1 & ! ^ request3@2' request3@2 & ! ^ request3@1' request3@1 & ! ^ request3@0.0.6' request3@0.0.6 1 $ 1 & ! ^ request4@2' request4@2 & ! ^ request4@1' request4@1 & ! ^ request4@0.0.6' request4@0.0.6 1 $ 1 & ! steps@4' & ! steps@3' & ! steps@2' & ! steps@1' & ! steps@0.0.20' 1
+| ! $ 1 & ! action@1 & ! ^ action@0.0.3 1 1 & & & & & $ 21 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 ^ 1 pos@0.1.6 & 1 pos@0.1.6 ^ pos@1 ? 7 & pos@1 ? 7 ^ pos@2 ? 9 & pos@2 ? 9 ^ 1 ? 6 & 1 ? 6 ^ ? 8 ? 13 & ? 8 ? 13 ^ ? 10 ? 15 & ? 10 ? 15 ^ ? 11 ? 17 & ? 11 ? 17 & ! ? 19 & ! ^ ? 5 ? 18 & ! ^ ? 4 ? 16 & ! ^ ? 2 ? 14 & ! ^ ? 0 ? 12 1 $ 1 & ! ^ request1@2' request1@2 & ! ^ request1@1' request1@1 & ! ^ request1@0.0.6' request1@0.0.6 1 $ 1 & ! ^ request2@2' request2@2 & ! ^ request2@1' request2@1 & ! ^ request2@0.0.6' request2@0.0.6 1 $ 1 & ! ^ request3@2' request3@2 & ! ^ request3@1' request3@1 & ! ^ request3@0.0.6' request3@0.0.6 1 $ 1 & ! ^ request4@2' request4@2 & ! ^ request4@1' request4@1 & ! ^ request4@0.0.6' request4@0.0.6 1 $ 11 ^ 1 steps@0.0.20 & 1 steps@0.0.20 ^ steps@1 ? 1 & steps@1 ? 1 ^ steps@2 ? 3 & steps@2 ? 3 ^ steps@3 ? 5 & steps@3 ? 5 ^ steps@4 ? 7 & steps@4 ? 7 & ! ? 9 & ! ^ steps@4' ? 8 & ! ^ steps@3' ? 6 & ! ^ steps@2' ? 4 & ! ^ steps@1' ? 2 & ! ^ steps@0.0.20' ? 0 1
+| ! $ 1 & ! ^ action@1 1 & ! ^ action@0.0.3 0 1 & & & & & $ 21 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 ^ 1 ? 0 & 1 ? 0 ^ ? 2 ? 7 & ? 2 ? 7 ^ ? 4 ? 9 & ? 4 ? 9 ^ ? 5 ? 11 & ? 5 ? 11 ^ 1 pos@0.1.6 & 1 pos@0.1.6 ^ pos@1 ? 15 & pos@1 ? 15 ^ pos@2 ? 17 & pos@2 ? 17 & ! ? 13 & ! ^ ? 12 ? 19 & ! ^ ? 10 ? 18 & ! ^ ? 8 ? 16 & ! ^ ? 6 ? 14 1 $ 1 & ! ^ request1@2' request1@2 & ! ^ request1@1' request1@1 & ! ^ request1@0.0.6' request1@0.0.6 1 $ 1 & ! ^ request2@2' request2@2 & ! ^ request2@1' request2@1 & ! ^ request2@0.0.6' request2@0.0.6 1 $ 1 & ! ^ request3@2' request3@2 & ! ^ request3@1' request3@1 & ! ^ request3@0.0.6' request3@0.0.6 1 $ 1 & ! ^ request4@2' request4@2 & ! ^ request4@1' request4@1 & ! ^ request4@0.0.6' request4@0.0.6 1 $ 11 ^ 1 steps@0.0.20 & 1 steps@0.0.20 ^ steps@1 ? 1 & steps@1 ? 1 ^ steps@2 ? 3 & steps@2 ? 3 ^ steps@3 ? 5 & steps@3 ? 5 ^ steps@4 ? 7 & steps@4 ? 7 & ! ? 9 & ! ^ steps@4' ? 8 & ! ^ steps@3' ? 6 & ! ^ steps@2' ? 4 & ! ^ steps@1' ? 2 & ! ^ steps@0.0.20' ? 0 1
+| ! $ 1 & ! ^ action@1 1 & ! ^ action@0.0.3 1 1 & & & & $ 13 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 ^ 1 pos@0.1.6 & 1 pos@0.1.6 ^ pos@1 ? 7 & pos@1 ? 7 ^ pos@2 ? 9 & pos@2 ? 9 & ! ^ ? 5 ? 11 & ! ^ ? 4 ? 10 & ! ^ ? 2 ? 8 & ! ^ ? 0 ? 6 1 $ 1 & ! ^ request1@2' request2@2 & ! ^ request1@1' request2@1 & ! ^ request1@0.0.6' request2@0.0.6 1 $ 1 & ! ^ request2@2' request3@2 & ! ^ request2@1' request3@1 & ! ^ request2@0.0.6' request3@0.0.6 1 $ 1 & ! ^ request3@2' request4@2 & ! ^ request3@1' request4@1 & ! ^ request3@0.0.6' request4@0.0.6 1 $ 1 & ! steps@4' & ! steps@3' & ! steps@2' & ! steps@1' & ! steps@0.0.20' 1
+
+
+## Variable limits: 0<=request1'<=6
+| ! request1@2' | ! request1@1' | ! request1@0.0.6' 0
+## Variable limits: 0<=request2'<=6
+| ! request2@2' | ! request2@1' | ! request2@0.0.6' 0
+## Variable limits: 0<=request3'<=6
+| ! request3@2' | ! request3@1' | ! request3@0.0.6' 0
+## Variable limits: 0<=request4'<=6
+| ! request4@2' | ! request4@1' | ! request4@0.0.6' 0
+## Variable limits: 0<=steps'<=20
+| ! steps@4' & ! steps@3' | ! steps@2' & ! steps@1' | ! steps@0.0.20' 0
+## Variable limits: 1<=pos'<=6
+| ! pos@2' | ! pos@1' & ! pos@0.1.6' 0
+
+[ENV_INIT]
+$ 1 & ! request1@2 & ! ^ request1@1 1 & ! ^ request1@0.0.6 1 1
+$ 1 & ! request2@2 & ! request2@1 & ! ^ request2@0.0.6 1 1
+$ 1 & ! request3@2 & ! ^ request3@1 1 & ! ^ request3@0.0.6 0 1
+$ 1 & ! request4@2 & ! request4@1 & ! request4@0.0.6 1
+$ 1 & ! steps@4 & ! steps@3 & ! steps@2 & ! steps@1 & ! steps@0.0.20 1
+$ 7 ^ 1 pos@0.1.6 & 1 pos@0.1.6 ^ pos@1 ? 1 & pos@1 ? 1 ^ pos@2 ? 3 & pos@2 ? 3 & ! ? 5 & ! ? 4 & ! ? 2 & ! ^ ? 0 1 1
+
+## Variable limits: 0<=request1<=6
+| ! request1@2 | ! request1@1 | ! request1@0.0.6 0
+## Variable limits: 0<=request2<=6
+| ! request2@2 | ! request2@1 | ! request2@0.0.6 0
+## Variable limits: 0<=request3<=6
+| ! request3@2 | ! request3@1 | ! request3@0.0.6 0
+## Variable limits: 0<=request4<=6
+| ! request4@2 | ! request4@1 | ! request4@0.0.6 0
+## Variable limits: 0<=steps<=20
+| ! steps@4 & ! steps@3 | ! steps@2 & ! steps@1 | ! steps@0.0.20 0
+## Variable limits: 1<=pos<=6
+| ! pos@2 | ! pos@1 & ! pos@0.1.6 0
+
+[SYS_TRANS]
+$ 1 & ! steps@4' | & ! steps@3' 1 & | 1 ! steps@3' | & ! steps@2' 1 & | 1 ! steps@2' | & ! steps@1' 1 & | 1 ! steps@1' | & ! steps@0.0.20' 1 & | 1 ! steps@0.0.20' 0
+| ! $ 1 & ! action@1' & ! ^ action@0.0.3' 1 1 $ 7 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 & ! ? 5 | & ! ? 4 1 & | 1 ! ? 4 | & ! ? 2 1 & | 1 ! ? 2 | & ! ? 0 0 & | 0 ! ? 0 0
+| ! $ 1 & ! ^ action@1' 1 & ! ^ action@0.0.3' 0 1 $ 7 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 | ? 5 | ? 4 | ? 2 | & ? 0 ! 1 & | ! 1 ? 0 0
+| ! $ 1 & ! ^ action@1' 1 & ! ^ action@0.0.3' 1 1 $ 7 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 & ! ? 5 & ! ^ ? 4 request1@2' & ! ^ ? 2 request1@1' & ! ^ ? 0 request1@0.0.6' 1
+#(action' = 4)  ->  (pos' = 2 & request1' = 2)
+#(action' = 5)  ->  (pos' = 3 & request1' = 3)
+#(action' = 6)  ->  (pos' = 4 & request1' = 4)
+#(action' = 7)  ->  (pos' = 5 & request1' = 5)
+#(action' = 8)  ->  (pos' = 6 & request1' = 6)
+
+
+[SYS_INIT]
+$ 1 & ! action@1 & ! action@0.0.3 1
+
+
+[ENV_LIVENESS]
+$ 1 & ! request2@2' & ! request2@1' & ! request2@0.0.6' 1
+
+
+
+
+[SYS_LIVENESS]
+& $ 1 & ! request1@2' & ! request1@1' & ! request1@0.0.6' 1 $ 7 ^ 1 pos@0.1.6' & 1 pos@0.1.6' ^ pos@1' ? 1 & pos@1' ? 1 ^ pos@2' ? 3 & pos@2' ? 3 & ! ? 5 & ! ? 4 & ! ? 2 & ! ^ ? 0 1 1
+
+

@@ -1,0 +1,88 @@
+
+[INPUT]
+docked:0...1
+battery_high:0...1
+battery_low:0...1
+at_dockingArea:0...1
+at_cabinet1:0...1
+at_cabinet2:0...1
+at_cabinet3:0...1
+at_cabinet4:0...1
+at_cabinet5:0...1
+cabinet1_surveyed:0...1
+cabinet2_surveyed:0...1
+cabinet3_surveyed:0...1
+cabinet4_surveyed:0...1
+cabinet5_surveyed:0...1
+
+[OUTPUT]
+## 0 = No acton, 1 = move1, 2 = move2, 3 = move3, 4 = move4, 5 = move5, 6 = moveToDockingArea
+## 7 = survey1, 8 = survey2, 9 = survey3, 10 = survey4, 11 = survey5,
+## 12 = unDock, 13 = dock, 14 = charge_battery
+action:0...14
+
+[SYS_INIT]
+
+action = 0
+
+[ENV_INIT]
+docked = 1
+cabinet1_surveyed = 0
+cabinet2_surveyed = 0
+cabinet3_surveyed = 0
+cabinet4_surveyed = 0
+cabinet5_surveyed = 0
+at_cabinet1 = 0
+at_cabinet2 = 0
+at_cabinet3 = 0
+at_cabinet4 = 0
+at_cabinet5 = 0
+at_dockingArea = 1
+battery_low != battery_high
+battery_low = 0
+
+[SYS_TRANS]
+
+(action' = 1  -> ( battery_low' = 0 & docked' = 0 & at_cabinet1' = 0)) 
+(action' = 2  -> ( battery_low' = 0 & docked' = 0 & at_cabinet2' = 0))
+(action' = 3  -> ( battery_low' = 0 & docked' = 0 & at_cabinet3' = 0))
+(action' = 4  -> ( battery_low' = 0 & docked' = 0 & at_cabinet4' = 0))
+(action' = 5  -> ( battery_low' = 0 & docked' = 0 & at_cabinet5' = 0))
+(action' = 6  -> ( at_dockingArea' = 0))
+(action' = 7  -> ( battery_low' = 0 & at_cabinet1' = 1 & cabinet1_surveyed' = 0))
+(action' = 8  -> ( battery_low' = 0 & at_cabinet2' = 1 & cabinet2_surveyed' = 0))
+(action' = 9  -> ( battery_low' = 0 & at_cabinet3' = 1 & cabinet3_surveyed' = 0))
+(action' = 10 -> ( battery_low' = 0 & at_cabinet4' = 1 & cabinet4_surveyed' = 0))
+(action' = 11 -> ( battery_low' = 0 & at_cabinet5' = 1 & cabinet5_surveyed' = 0))
+(action' = 12  -> ( battery_low' = 0 & docked' = 1 ))
+(action' = 13  -> ( docked' = 0 & at_dockingArea' = 1))
+(action' = 14 -> ( battery_low' = 1 & docked' = 1))
+
+[SYS_LIVENESS]
+
+docked' = 1 & cabinet1_surveyed' = 1 & cabinet2_surveyed' = 1 & cabinet3_surveyed' = 1 & cabinet4_surveyed' = 1 & cabinet5_surveyed' = 1
+
+[ENV_TRANS]
+
+(action = 0) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+
+(action = 1) -> (at_cabinet1' = 1 & at_cabinet2' = 0 & at_cabinet3' = 0 & at_cabinet4' = 0 & at_cabinet5' = 0 & at_dockingArea' = 0 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 2) -> (at_cabinet1' = 0 & at_cabinet2' = 1 & at_cabinet3' = 0 & at_cabinet4' = 0 & at_cabinet5' = 0 & at_dockingArea' = 0 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 3) -> (at_cabinet1' = 0 & at_cabinet2' = 0 & at_cabinet3' = 1 & at_cabinet4' = 0 & at_cabinet5' = 0 & at_dockingArea' = 0 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 4) -> (at_cabinet1' = 0 & at_cabinet2' = 0 & at_cabinet3' = 0 & at_cabinet4' = 1 & at_cabinet5' = 0 & at_dockingArea' = 0 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 5) -> (at_cabinet1' = 0 & at_cabinet2' = 0 & at_cabinet3' = 0 & at_cabinet4' = 0 & at_cabinet5' = 1 & at_dockingArea' = 0 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 6) -> (at_cabinet1' = 0 & at_cabinet2' = 0 & at_cabinet3' = 0 & at_cabinet4' = 0 & at_cabinet5' = 0 & at_dockingArea' = 1 & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+
+(action = 7) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = 1 & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 8) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = 1 & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 9) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = 1 & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 10) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = 1 & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+(action = 11) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = 1 & docked' = docked & battery_low' = battery_low & battery_high' = battery_high)
+
+(action = 12) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = 0 & battery_low' = battery_low & battery_high' = battery_high)
+(action = 13) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = 1 & battery_low' = battery_low & battery_high' = battery_high)
+(action = 14) -> (at_cabinet1' = at_cabinet1 & at_cabinet2' = at_cabinet2 & at_cabinet3' = at_cabinet3 & at_cabinet4' = at_cabinet4 & at_cabinet5' = at_cabinet5 & at_dockingArea' = at_dockingArea & cabinet1_surveyed' = cabinet1_surveyed & cabinet2_surveyed' = cabinet2_surveyed & cabinet3_surveyed' = cabinet3_surveyed & cabinet4_surveyed' = cabinet4_surveyed & cabinet5_surveyed' = cabinet5_surveyed & docked' = docked & battery_low' = 0 & battery_high' = 1)
+
+[ENV_LIVENESS]
+
+

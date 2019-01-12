@@ -1,0 +1,13 @@
+{"version": 0,
+ "slugs": "0.0.1",
+
+ "variables": ["request1@0.0.6", "request1@1", "request1@2", "request2@0.0.6", "request2@1", "request2@2", "request3@0.0.6", "request3@1", "request3@2", "request4@0.0.6", "request4@1", "request4@2", "steps@0.0.20", "steps@1", "steps@2", "steps@3", "steps@4", "pos@0.1.6", "pos@1", "pos@2", "action@0.0.3", "action@1"],
+
+ "nodes": {
+"0": {
+	"rank": 0,
+	"state": [1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	"trans": [0]
+}
+
+}}

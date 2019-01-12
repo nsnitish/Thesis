@@ -1,0 +1,90 @@
+
+[INPUT]
+docked:0...1
+taskDone:0...1
+at_1:0...1
+at_2:0...1
+at_3:0...1
+
+[OUTPUT]
+move1:0...1
+move2:0...1
+move3:0...1
+unDock:0...1
+Dock:0...1
+doTask:0...1
+
+[SYS_INIT]
+
+
+[ENV_INIT]
+docked = 1
+taskDone = 0
+at_1 = 0
+at_2 = 0
+at_3 = 0
+
+[SYS_TRANS]
+
+!(next(doTask) = 1 & unDock' = 1)
+!(next(doTask) = 1 & Dock' = 1)
+!(next(doTask) = 1 & move1' = 1)
+!(next(doTask) = 1 & move2' = 1)
+!(next(doTask) = 1 & move3' = 1)
+
+!(Dock' = 1 & unDock' = 1)
+!(Dock' = 1 & move1' = 1)
+!(Dock' = 1 & move2' = 1)
+!(Dock' = 1 & move3' = 1)
+
+!(unDock' = 1 & move1' = 1)
+!(unDock' = 1 & move2' = 1)
+!(unDock' = 1 & move3' = 1)
+
+!(move1' = 1 & move2' = 1)
+!(move1' = 1 & move3' = 1)
+
+!(move2' = 1 & move3' = 1)
+
+
+(doTask' = 1 -> (at_3' = 1)) 
+(unDock' = 1 -> (docked' = 1)) 
+(Dock' = 1 -> (docked' = 0 & at_1' = 1))
+(move1' = 1 -> (docked' = 0 & at_1' = 0)) 
+(move2' = 1 -> (docked' = 0 & at_2' = 0))
+(move3' = 1 -> (docked' = 0 & at_3' = 0))
+
+[SYS_LIVENESS]
+
+taskDone = 1 & docked = 1
+
+[ENV_TRANS]
+
+#(doTask = 1 & at_3 = 1) -> (taskDone' = 1 & docked' = docked & at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+#(unDock = 1 & docked = 1) -> (docked' = 0 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+#(Dock = 1 & docked = 0 & at_1 = 1) ->   (docked' = 1 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+#(move1 = 1 & docked = 0 & at_1 = 0) -> (at_1' = 1 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone & docked' = docked)
+#(move2 = 1 & docked = 0 & at_2 = 0) -> (at_1' = 0 & at_2' = 1 & at_3' = 0 & taskDone' = taskDone & docked' = docked)
+#(move3 = 1 & docked = 0 & at_3 = 0) -> (at_1' = 0 & at_2'= 0 & at_3'  = 1 & taskDone' = taskDone & docked' = docked)
+
+
+(doTask = 1) -> (taskDone' = 1 & docked' = docked & at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+(unDock = 1) -> (docked' = 0 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+(Dock = 1 ) ->   (docked' = 1 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+(move1 = 1) -> (at_1' = 1 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone & docked' = docked)
+(move2 = 1) -> (at_1' = 0 & at_2' = 1 & at_3' = 0 & taskDone' = taskDone & docked' = docked)
+(move3 = 1) -> (at_1' = 0 & at_2'= 0 & at_3'  = 1 & taskDone' = taskDone & docked' = docked)
+
+#!(at_1 = 1 & at_2 = 1)
+#!(at_2 = 1 & at_3 = 1)
+#!(at_1 = 1 & at_3 = 1)
+#!(Dock = 1 | unDock = 1 | doTask = 1 | move1 = 1 | move2 = 1 | move3 = 1) -> (at_1' =  at_1) & (at_2' = at_2) & (at_3' = at_3) & (docked' = docked) & (taskDone' = taskDone)
+
+
+!((doTask = 1 & at_3 = 1) | (unDock = 1 & docked = 1) | (Dock = 1 & docked = 0 & at_1 = 1) | (move1 = 1 & docked = 0 & at_1 = 0) | (move2 = 1 & docked = 0 & at_2 = 0) | (move3 = 1 & docked = 0 & at_3 = 0) ) -> (at_1' =  at_1) & (at_2' = at_2) & (at_3' = at_3) & (docked' = docked) & (taskDone' = taskDone)
+
+[ENV_LIVENESS]
+
+
+
+

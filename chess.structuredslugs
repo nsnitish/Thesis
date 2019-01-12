@@ -1,0 +1,107 @@
+[INPUT]
+k1_y:0...9
+k1_x:0...9
+q1_y:0...9
+q1_x:0...9
+
+k2_x: 0...9
+k2_y: 0...9
+
+#mate:0...1
+
+#moves:0...30
+[OUTPUT]
+
+action: 0...16
+#0 = no motion, 1 = N, 2 = NE, 3 = E, 4 = SE, 5 = S, 6 = SW, 7 = W, 8 = NW
+step:1...7 
+mate:0...1
+
+[SYS_INIT]
+action = 0
+
+[ENV_INIT]
+q1_y = 2
+q1_x = 7
+k1_x = 6
+k1_y = 4
+
+k2_y = 4
+k2_x = 8
+
+#moves = 0
+
+[SYS_TRANS]
+#moves' < 10
+(action' = 9)  ->  (step' + q1_y' < 9)
+(action' = 10) -> ((step' + q1_y' < 9) & (step' + q1_x' < 9))
+(action' = 11) -> (step' + q1_x' < 9)
+(action' = 12) -> ((step' < q1_y')     & (step' + q1_x' < 9))
+(action' = 13) ->  (step' < q1_y')
+(action' = 14) -> ((step' < q1_y')     & (step' < q1_x'))
+(action' = 15) ->  (step' < q1_x')
+(action' = 16) -> ((step' + q1_y' < 9) & (step' < q1_x'))
+
+q1_y' > 0
+q1_y' < 9
+q1_x' > 0
+q1_x' < 9
+k1_x' > 0
+k1_x' < 9
+k1_y' > 0
+k1_y' < 9
+action' != 0
+
+(mate' = 1) -> ((q1_x'+1 = k2_x) & (q1_y' = k2_y) & (((k1_y' = q1_y) & (k1_x'+2 = k2_x)) | (k1_y' = q1_y+1) & (k1_x' = 6)) & (k2_x = 8))
+#(mate = 1) -> (mate' = 1)
+#(mate = 1) -> (action' = 0)
+#(action' != 0) -> (mate' = 0)
+
+[SYS_LIVENESS]
+#(k1_x' = 3) & (k1_y' = 4) & (q1_y' = 3) & (q1_x' = 2)
+#((q1_x = k2_x) & (q1_y = k2_y))
+((q1_x'+1 = k2_x) & (q1_y' = k2_y) & (((k1_y' = q1_y) & (k1_x'+2 = k2_x)) | (k1_y' = q1_y+1) & (k1_x' = 6)) & (k2_x = 8))
+mate' = 1
+
+[ENV_TRANS]
+
+k2_y'+ 1 >= k2_y
+k2_y + 1 >= k2_y'
+k2_x'+ 1 >= k2_x
+k2_x + 1 >= k2_x'
+!((k2_y' = k2_y) & (k2_x' = k2_x))
+k2_y' > 0
+k2_x' > 0
+k2_y' < 9
+k2_x' < 9
+(k2_x' != q1_x)
+
+#((q1_x+1 = k2_x) & (q1_y = k2_y) & (((k1_y = q1_y) & (k1_x+2 = k2_x)) | (k1_y = q1_y+1) & (k1_x = 6)) & (k2_x = 8)) <-> (mate' = 1)
+#(mate = 1) -> (mate' = 1)
+#(mate = 1) -> (moves' = moves)
+#(mate = 0) -> (moves' = moves+1)
+
+(action = 0) -> ((k1_x'   = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 1) -> ((k1_x'   = k1_x)   & (k1_y'   = k1_y+1) & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 2) -> ((k1_x'   = k1_x+1) & (k1_y'   = k1_y+1) & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 3) -> ((k1_x'   = k1_x+1) & (k1_y'   = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 4) -> ((k1_x'   = k1_x+1) & (k1_y'+1 = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 5) -> ((k1_x'   = k1_x)   & (k1_y'+1 = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 6) -> ((k1_x'+1 = k1_x)   & (k1_y'+1 = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 7) -> ((k1_x'+1 = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 8) -> ((k1_x'+1 = k1_x)   & (k1_y'   = k1_y+1) & (q1_y'      = q1_y)      & (q1_x'      = q1_x))
+(action = 9) -> ((k1_x'   = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y+step) & (q1_x'      = q1_x))
+(action = 10) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y+step) & (q1_x'      = q1_x+step))
+(action = 11) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y)      & (q1_x'      = q1_x+step))
+(action = 12) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'+step = q1_y)      & (q1_x'      = q1_x+step))
+(action = 13) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'+step = q1_y)      & (q1_x'      = q1_x))
+(action = 14) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'+step = q1_y)      & (q1_x'+step = q1_x))
+(action = 15) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y)      & (q1_x'+step = q1_x))
+(action = 16) -> ((k1_x'  = k1_x)   & (k1_y'   = k1_y)   & (q1_y'      = q1_y+step) & (q1_x'+step = q1_x))
+
+
+[ENV_LIVENESS]
+
+
+
+

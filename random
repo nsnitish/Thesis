@@ -1,0 +1,14 @@
+
+
+(doTask = 1 & at_3 = 1) -> (taskDone' = 1)
+#!(doTask = 1 & at_3 = 1) -> (taskDone' = taskDone)
+(unDock = 1 & docked = 1) -> (docked' = 0 & at_1' = 0 & at_2' = 0 & at_3' = 0)
+#!(unDock = 1 & docked = 1) -> (docked' = docked & at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+(Dock = 1 & docked = 0) -> (docked' = 1 & at_1' = 0 & at_2' = 0 & at_3' = 0)
+#!(Dock = 1 & docked = 0) -> (docked' = docked & at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+(move1 = 1 & docked = 0 & at_1 = 0) -> (at_1' = 1 & at_2' = 0 & at_3' = 0)
+#!(move1 = 1 & docked = 0 & at_1 = 0) -> (at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+(move2 = 1 & docked = 0 & at_2 = 0) -> (at_1' = 0 & at_2' = 1 & at_3' = 0)
+#!(move2 = 1 & docked = 0 & at_2 = 0) -> (at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+(move3 = 1 & docked = 0 & at_3 = 0) -> (at_1' = 0 & at_2'= 0 & at_3' = 1)
+#!(move3 = 1 & docked = 0 & at_3 = 0) -> (at_1' = at_1 & at_2'= at_2 & at_3' = at_3)

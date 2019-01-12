@@ -1,0 +1,119 @@
+[INPUT]
+o1_y:4...10
+o1_x:4...4
+o2_y:1...7
+o2_x:6...6
+
+a_x: 0...11
+a_y: 0...11
+
+batteryAction:0...1
+battery:0...31
+
+[OUTPUT]
+#controller:0...2
+#direction:0...5 
+#0 = no motion, 1 = North, 2 = East, 3 = South, 4 = West
+#0 = no motion, 
+#mode0: 1 = North, 2 = East, 3 = South, 4 = West
+#mode1: 5 = North, 6 = East, 7 = South, 8 = West
+#mode2: 9 = North, 10 = East, 11 = South, 12 = West
+action:0...12
+
+
+
+[SYS_INIT]
+
+#direction = 0
+
+[ENV_INIT]
+battery = 31
+o1_y = 7
+o2_y = 4
+a_x = 2
+a_y = 2
+
+
+[SYS_TRANS]
+
+a_x' != 0
+a_y' != 0
+a_x' != 11 
+a_y' != 11
+battery' >= 8
+
+
+(action' = 9  -> (a_y' <= 7 & a_x' >= 2 & a_x' <= 9))
+(action' = 10 -> (a_x' <= 7 & a_y' >= 2 & a_y' <= 9))
+(action' = 11 -> (a_y' >= 4 & a_x' >= 2 & a_x' <= 9))
+(action' = 12 -> (a_x' >= 4 & a_y' >= 2 & a_y' <= 9))
+
+(action' = 5 -> (a_y' <= 8 & a_x' >= 1 & a_x' <= 10))
+(action' = 6 -> (a_x' <= 8 & a_y' >= 1 & a_y' <= 10))
+(action' = 7 -> (a_y' >= 3 & a_x' >= 1 & a_x' <= 10))
+(action' = 8 -> (a_x' >= 3 & a_y' >= 1 & a_y' <= 10))
+
+!(a_x <= o1_x & a_x' >= o1_x & (a_y = o1_y | a_y' = o1_y | a_y = o1_y'))
+!(a_x >= o1_x & a_x' <= o1_x & (a_y = o1_y | a_y' = o1_y | a_y = o1_y'))
+!(a_x <= o2_x & a_x' >= o2_x & (a_y = o2_y | a_y' = o2_y | a_y = o2_y'))
+!(a_x >= o2_x & a_x' <= o2_x & (a_y = o2_y | a_y' = o2_y | a_y = o2_y'))
+action' != 0
+
+[SYS_LIVENESS]
+a_x' = 9 & a_y' = 9
+#a_x' = 2 & a_y' = 2
+
+[ENV_TRANS]
+
+(batteryAction' = 0) -> !(a_x' = 2 & a_y' = 2)
+(batteryAction' = 1) -> (a_x' = 2 & a_y' = 2)
+
+(batteryAction = 0) -> battery' + 1 = battery
+(batteryAction = 1) ->  battery' = 31
+#!(a_x = 2 & a_y = 2) -> battery' + 1 = battery
+#(a_x = 2 & a_y = 2) ->  battery' = 31
+
+#o1_x' = o1_x
+
+(o1_y'+ 1 = o1_y) | (o1_y' = o1_y) | (o1_y+ 1 = o1_y')
+
+#o1_y'+ 1 >= o1_y
+#o1_y+ 1 >= o1_y'
+
+o2_y'+ 1 >= o2_y
+o2_y+ 1 >= o2_y'
+
+(action = 0) -> ((a_x' = a_x) & (a_y' = a_y))
+
+(action = 9 ) -> ((a_y' = a_y + 4) & (a_x' + 2 >= a_x) & (a_x + 2 >= a_x'))
+(action = 10) -> ((a_x' = a_x + 4) & (a_y' + 2 >= a_y) & (a_y + 2 >= a_y'))
+(action = 11) -> ((a_y' + 4 = a_y) & (a_x' + 2 >= a_x) & (a_x + 2 >= a_x'))
+(action = 12) -> ((a_x' + 4 = a_x) & (a_y' + 2 >= a_y) & (a_y + 2 >= a_y'))
+
+(action = 5) -> ((a_y' = a_y + 3) & (a_x' + 1 >= a_x) & (a_x + 1 >= a_x'))
+(action = 6) -> ((a_x' = a_x + 3) & (a_y' + 1 >= a_y) & (a_y + 1 >= a_y'))
+(action = 7) -> ((a_y' + 3 = a_y) & (a_x' + 1 >= a_x) & (a_x + 1 >= a_x'))
+(action = 8) -> ((a_x' + 3 = a_x) & (a_y' + 1 >= a_y) & (a_y + 1 >= a_y'))
+
+(action = 1) -> ((a_y' = a_y + 1) & (a_x' = a_x)) 
+(action = 2) -> ((a_x' = a_x + 1) & (a_y' = a_y))
+(action = 3) -> ((a_y' + 1 = a_y) & (a_x' = a_x))
+(action = 4) -> ((a_x' + 1 = a_x) & (a_y' = a_y))
+
+#(action = 9  & a_y >= 8 ) -> (a_y' = 11)
+#(action = 10 & a_x >= 8 ) -> (a_x' = 11)
+#(action = 11 & a_y <= 3 ) -> (a_y' = 0)
+#(action = 12 & a_x <= 3 ) -> (a_x' = 0)
+
+#(action = 5 & a_y >= 9 ) -> (a_y' = 11)
+#(action = 6 & a_x >= 9 ) -> (a_x' = 11)
+#(action = 7 & a_y <= 2 ) -> (a_y' = 0)
+#(action = 8 & a_x <= 2 ) -> (a_x' = 0)
+
+
+
+
+[ENV_LIVENESS]
+
+
+

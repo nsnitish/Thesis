@@ -1,0 +1,33 @@
+[INPUT]
+x
+
+
+[OUTPUT]
+y
+
+
+[ENV_TRANS]
+
+
+
+[ENV_INIT]
+
+
+[SYS_TRANS]
+| ! ! x' y'
+
+
+[SYS_INIT]
+
+
+
+[ENV_LIVENESS]
+! x
+
+
+
+
+[SYS_LIVENESS]
+y
+
+

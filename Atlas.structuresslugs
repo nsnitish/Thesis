@@ -1,0 +1,85 @@
+[INPUT]
+['manipulate_f',
+ 'manipulate_c',
+ 'stand_c',
+ 'stand_f',
+ 'stand_prep_c',
+ 'stand_prep_f',
+ 'grasp_f',
+ 'grasp_c']
+[OUTPUT]
+['manipulate_a',
+ 'stand_a',
+ 'grasp_m',
+ 'stand_prep_a',
+ 'failed',
+ 'finished',
+ 'grasp_a']
+[SYS_INIT]
+['! manipulate_a',
+ '! stand_a',
+ '! finished',
+ '! grasp_m',
+ '! failed',
+ '! stand_prep_a',
+ '! grasp_a']
+[ENV_INIT]
+['! manipulate_f',
+ '! manipulate_c',
+ 'stand_c',
+ '! stand_f',
+ '! stand_prep_c',
+ '! stand_prep_f',
+ '! grasp_f',
+ '! grasp_c']
+[SYS_TRANS]
+['next(stand_prep_c) -> (next(stand_prep_a & ! stand_a & ! manipulate_a) | next(stand_a & ! stand_prep_a & ! manipulate_a) | next(! stand_prep_a & ! stand_a & ! manipulate_a))',
+ 'next(stand_c) -> (next(stand_a & ! stand_prep_a & ! manipulate_a) | next(manipulate_a & ! stand_prep_a & ! stand_a) | next(! stand_prep_a & ! stand_a & ! manipulate_a))',
+ 'next(manipulate_c) -> (next(manipulate_a & ! stand_prep_a & ! stand_a) | next(stand_a & ! stand_prep_a & ! manipulate_a) | next(! stand_prep_a & ! stand_a & ! manipulate_a))',
+ '(stand_prep_a & (next(stand_prep_c) | next(stand_prep_f))) -> next(! stand_prep_a)',
+ '(stand_a & (next(stand_c) | next(stand_f))) -> next(! stand_a)',
+ '(manipulate_a & (next(manipulate_c) | next(manipulate_f))) -> next(! manipulate_a)',
+ '(grasp_a & (next(grasp_c) | next(grasp_f))) -> next(! grasp_a)',
+ '((grasp_a & next(grasp_c)) | grasp_m) <-> next(grasp_m)',
+ 'finished <-> grasp_m',
+ 'next(failed) <-> ((next(grasp_f) | next(stand_prep_f) | next(stand_f) | next(manipulate_f)) | failed)']
+[ENV_TRANS]
+['next(stand_prep_c) <-> (! next(stand_c) & ! next(manipulate_c))',
+ 'next(stand_c) <-> (! next(stand_prep_c) & ! next(manipulate_c))',
+ 'next(manipulate_c) <-> (! next(stand_prep_c) & ! next(stand_c))',
+ '(stand_prep_c & (stand_prep_a & ! stand_a & ! manipulate_a)) -> (next(stand_prep_f) | next(stand_prep_c))',
+ '(stand_prep_c & (stand_a & ! stand_prep_a & ! manipulate_a)) -> (next(stand_f) | next(stand_c) | next(stand_prep_c))',
+ '(stand_c & (stand_a & ! stand_prep_a & ! manipulate_a)) -> (next(stand_c) | next(stand_f))',
+ '(stand_c & (manipulate_a & ! stand_prep_a & ! stand_a)) -> (next(manipulate_f) | next(manipulate_c) | next(stand_c))',
+ '(manipulate_c & (manipulate_a & ! stand_prep_a & ! stand_a)) -> (next(manipulate_f) | next(manipulate_c))',
+ '(manipulate_c & (stand_a & ! stand_prep_a & ! manipulate_a)) -> (next(manipulate_c) | next(stand_c) | next(stand_f))',
+ '(stand_prep_c & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(stand_prep_c)',
+ '(stand_prep_f & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(stand_prep_f)',
+ '(stand_c & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(stand_c)',
+ '(stand_f & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(stand_f)',
+ '(manipulate_c & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(manipulate_c)',
+ '(manipulate_f & (! stand_prep_a & ! stand_a & ! manipulate_a)) -> next(manipulate_f)',
+ '(! stand_prep_c & ! stand_prep_a) -> next(! stand_prep_c)',
+ '(! stand_prep_f & ! stand_prep_a) -> next(! stand_prep_f)',
+ '(! stand_c & ! stand_a) -> next(! stand_c)',
+ '(! stand_f & ! stand_a) -> next(! stand_f)',
+ '(! manipulate_c & ! manipulate_a) -> next(! manipulate_c)',
+ '(! manipulate_f & ! manipulate_a) -> next(! manipulate_f)',
+ 'next(stand_prep_c) -> next(! stand_prep_f)',
+ 'next(stand_prep_f) -> next(! stand_prep_c)',
+ 'next(stand_c) -> next(! stand_f)',
+ 'next(stand_f) -> next(! stand_c)',
+ 'next(manipulate_c) -> next(! manipulate_f)',
+ 'next(manipulate_f) -> next(! manipulate_c)',
+ 'next(grasp_c) -> next(! grasp_f)',
+ 'next(grasp_f) -> next(! grasp_c)',
+ '(! grasp_c & ! grasp_a) -> next(! grasp_c)',
+ '(! grasp_f & ! grasp_a) -> next(! grasp_f)',
+ '(grasp_c & ! grasp_a) -> next(grasp_c)',
+ '(grasp_f & ! grasp_a) -> next(grasp_f)']
+[SYS_LIVENESS]
+['(finished | failed)']
+[ENV_LIVENESS]
+['((((stand_prep_a & ! stand_a & ! manipulate_a) & (next(stand_prep_c) | next(stand_prep_f))) | ((stand_a & ! stand_prep_a & ! manipulate_a) & (next(stand_c) | next(stand_f))) | ((manipulate_a & ! stand_prep_a & ! stand_a) & (next(manipulate_c) | next(manipulate_f)))) | (! stand_prep_a & ! stand_a & ! manipulate_a))',
+ '((grasp_a & (next(grasp_c) | next(grasp_f))) | ! grasp_a)']
+

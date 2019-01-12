@@ -1,0 +1,268 @@
+outh_x_4_y_11()
+2. moveSouth_x_4_y_10()
+3. moveSouth_x_4_y_9()
+4. moveWest_x_4_y_8()
+5. moveSouth_x_3_y_8()
+6. moveSouth_x_3_y_7()
+7. moveSouth_x_3_y_6()
+8. moveSouth_x_3_y_5()
+9. moveSouth_x_3_y_4()
+10. Survey_2()
+11. moveNorth_x_3_y_3()
+12. moveNorth_x_3_y_4()
+13. moveNorth_x_3_y_5()
+14. moveNorth_x_3_y_6()
+15. moveNorth_x_3_y_7()
+16. moveNorth_x_3_y_8()
+17. moveEast_x_3_y_9()
+18. moveEast_x_4_y_9()
+19. moveEast_x_5_y_9()
+20. moveEast_x_6_y_9()
+21. Survey_4()
+22. moveSouth_x_7_y_9()
+23. moveSouth_x_7_y_8()
+24. moveSouth_x_7_y_7()
+25. moveSouth_x_7_y_6()
+26. moveWest_x_7_y_5()
+27. Survey_3()
+28. moveSouth_x_6_y_5()
+29. moveSouth_x_6_y_4()
+30. moveSouth_x_6_y_3()
+31. moveSouth_x_6_y_2()
+32. moveWest_x_6_y_1()
+33. moveWest_x_5_y_1()
+34. moveWest_x_4_y_1()
+35. moveWest_x_3_y_1()
+36. Survey_1()
+
+
+
+
+
+
+
+
+
+
+outh_x_4_y_11()
+2. moveSouth_x_4_y_10()
+3. moveEast_x_4_y_9()
+4. moveEast_x_5_y_9()
+5. moveEast_x_6_y_9()
+6. Survey_4()
+7. moveSouth_x_7_y_9()
+8. moveWest_x_7_y_8()
+9. moveWest_x_6_y_8()
+10. moveWest_x_5_y_8()
+11. moveWest_x_4_y_8()
+12. moveSouth_x_3_y_8()
+13. moveSouth_x_3_y_7()
+14. moveSouth_x_3_y_6()
+15. moveSouth_x_3_y_5()
+16. moveSouth_x_3_y_4()
+17. Survey_2()
+18. moveNorth_x_3_y_3()
+19. moveNorth_x_3_y_4()
+20. moveNorth_x_3_y_5()
+21. moveNorth_x_3_y_6()
+22. moveNorth_x_3_y_7()
+23. moveEast_x_3_y_8()
+24. moveEast_x_4_y_8()
+25. moveSouth_x_5_y_8()
+26. moveSouth_x_5_y_7()
+27. moveSouth_x_5_y_6()
+28. moveEast_x_5_y_5()
+29. Survey_3()
+30. moveSouth_x_6_y_5()
+31. moveEast_x_6_y_4()
+32. moveEast_x_7_y_4()
+33. moveSouth_x_8_y_4()
+34. moveSouth_x_8_y_3()
+35. moveSouth_x_8_y_2()
+36. moveWest_x_8_y_1()
+37. moveWest_x_7_y_1()
+38. moveWest_x_6_y_1()
+39. moveWest_x_5_y_1()
+40. moveWest_x_4_y_1()
+41. moveWest_x_3_y_1()
+42. Survey_1()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+outh_x_4_y_11()
+2. moveSouth_x_4_y_10()
+3. moveEast_x_4_y_9()
+4. moveEast_x_5_y_9()
+5. moveEast_x_6_y_9()
+6. Survey_4()
+7. moveSouth_x_7_y_9()
+8. moveSouth_x_7_y_8()
+9. moveWest_x_7_y_7()
+10. moveWest_x_6_y_7()
+11. moveSouth_x_5_y_7()
+12. moveSouth_x_5_y_6()
+13. moveEast_x_5_y_5()
+14. Survey_3()
+15. moveSouth_x_6_y_5()
+16. moveEast_x_6_y_4()
+17. moveEast_x_7_y_4()
+18. moveSouth_x_8_y_4()
+19. moveSouth_x_8_y_3()
+20. moveSouth_x_8_y_2()
+21. moveWest_x_8_y_1()
+22. moveWest_x_7_y_1()
+23. moveWest_x_6_y_1()
+24. moveWest_x_5_y_1()
+25. moveWest_x_4_y_1()
+26. moveWest_x_3_y_1()
+27. Survey_1()
+
+
+
+
+
+import json
+import random
+import time
+from environment import Simulation
+from time import sleep
+
+def print_info(node):
+#    time = node['state'][19]*2**4 + node['state'][18]*2**3\
+#          + node['state'][17]*2**2 + node['state'][16]*2**1 + node['state'][15]*2**0
+##    controller = node['state'][20]*2**1 + node['state'][19]*2**0
+##    direction = node['state'][23]*2**2 + node['state'][22]*2**1 + node['state'][21]*2**0
+#    action = node['state'][23]*2**3 + node['state'][22]*2**2 + node['state'][21]*2**1 + node['state'][20]*2**0
+##    print ('time: ', time, "direction ", direction, "controller:", controller)
+#    print ('time: ', time, "action", action)
+
+    visited_1 = node['state'][14]
+    visited_2 = node['state'][15]
+    visited_3 = node['state'][16]
+    visited_4 = node['state'][17]
+    step = node['state'][23]*2**5 + node['state'][22]*2**4 + node['state'][21]*2**3\
+    + node['state'][20]*2**2 + node['state'][19]*2**1 + node['state'][18]*2**0 
+    action = node['state'][27]*2**3 + node['state'][26]*2**2 + node['state'][25]*2**1 + node['state'][24]*2**0
+#    print ("visited_1: ", visited_1, "visited_2: ", visited_2, "visited_3: ", visited_3, "visited_4: ", visited_4, "step: ", step, "action: ", action)
+
+
+def get_o1_state(node):
+    return (1 + node['state'][1]*(2**1) + node['state'][0]*(2**0), 8)
+
+def get_o2_state(node):
+    return (6 + node['state'][3]*(2**1) + node['state'][2]*(2**0), 6)
+
+def get_o3_state(node):
+    return (5 + node['state'][5]*(2**1) + node['state'][4]*(2**0), 3)
+
+def get_a_state(node):
+    a_x = node['state'][9]*2**3 + node['state'][8]*2**2 + node['state'][7]*2**1\
+           + node['state'][6]*2**0
+    a_y = node['state'][13]*2**3 + node['state'][12]*2**2 + node['state'][11]*2**1\
+           + node['state'][10]*2**0
+    return (a_x, a_y)
+
+def get_a_state_goap(action,a_x,a_y):
+#    print action
+#    print a_x
+#    print a_y
+    if action == 1:
+       a_y = a_y+1
+    elif action == 2:
+       a_x = a_x+1  
+    elif action == 3:
+       a_x = a_x-1  
+    elif action == 4:
+       a_y = a_y-1  
+    return (a_x, a_y)
+
+def get_action(step):
+#    action_stack = [4,4,4,3,4,4,4,4,4,6,1,1,1,1,1,1,2,2,2,2,8,4,4,4,4,3,7,4,4,4,4,3,3,3,3,5]
+    action_stack = [4,4,2,2,2,8,4,3,3,3,3,4,4,4,4,4,6,1,1,1,1,1,2,2,4,4,4,2,7,4,2,2,4,4,4,3,3,3,3,3,3,5]
+#    action_stack = [4,4,2,2,2,8,4,4,3,3,4,4,2,7,4,2,2,4,4,4,3,3,3,3,3,3,5]
+#    if step < len(action_stack):
+    return action_stack[step]
+#    else:
+#       return 0
+
+#with open('simulation.json') as f:
+#    data = json.load(f)
+def simulate(sim,data,nodes):
+   collision = 0
+   with open('GOAPvsADLnE.json') as f:
+      data = json.load(f)
+
+   nodes = data['nodes']
+
+   sim = Simulation('simulation.config')
+
+   sim.draw()
+   cur_state = sim.get_state()
+   current_node = nodes['0']
+
+   a_state_pos = (cur_state['agents'][0])
+   o1_state_pos = (cur_state['moving_obstacles'][0])
+   o2_state = (cur_state['moving_obstacles'][1])
+   step = 0;
+   while step<38:
+      trans = current_node['trans']
+      index = str(random.choice(trans))
+      current_node = nodes[index]
+      next_o1_state_pos = get_o1_state(current_node)
+      next_o2_state_pos = get_o2_state(current_node)
+      next_o3_state_pos = get_o3_state(current_node)
+#      next_a_state_pos = get_a_state(current_node)
+      action = get_action(step)
+      next_a_state_pos = get_a_state_goap(action,a_state_pos[0],a_state_pos[1])
+#      print (a_state_pos == o1_state_pos)
+      if ((a_state_pos == o1_state_pos) | (next_a_state_pos == o1_state_pos)):
+         collision = 1
+      sim.agent_move(0, next_a_state_pos)
+      sim.draw()
+      sleep(0.01)
+      sim.obstacle_move(0, next_o1_state_pos)
+      sim.obstacle_move(1, next_o2_state_pos)
+      sim.obstacle_move(2, next_o3_state_pos)
+      print_info(current_node)
+      a_state_pos = next_a_state_pos
+      o1_state_pos = next_o1_state_pos
+      o2_state_pos = next_o2_state_pos
+      o3_state_pos = next_o3_state_pos
+      sim.draw()
+      sleep(0.01)
+#      print step
+      step = step+1
+   print ('collision: ' , collision)
+   print ('a_state', a_state_pos, 'o1_state', o1_state_pos, 'o2_state', o2_state_pos, 'o3_state', o3_state_pos)
+   return collision
+
+collisions = 0
+with open('GOAPvsADLnE.json') as f:
+   data = json.load(f)
+nodes = data['nodes']
+sim = Simulation('simulation.config')
+for i in range(1,100):
+#   collisions = collisions + simulate()
+   collisions = collisions + simulate(sim,data,nodes)
+   print collisions
+
+

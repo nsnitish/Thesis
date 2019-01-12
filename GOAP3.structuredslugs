@@ -1,0 +1,54 @@
+
+[INPUT]
+docked:0...1
+taskDone:0...1
+at_1:0...1
+at_2:0...1
+at_3:0...1
+
+[OUTPUT]
+## 0 = No acton, 1 = move1, 2 = move2, 3 = move3,
+## 4 = unDock, 5 = dock, 6 = doTask
+action:0...6
+
+[SYS_INIT]
+
+
+[ENV_INIT]
+docked = 1
+taskDone = 0
+at_1 = 0
+at_2 = 0
+at_3 = 0
+
+[SYS_TRANS]
+
+(action' = 1 -> (docked' = 0 & at_1' = 0)) 
+(action' = 2 -> (docked' = 0 & at_2' = 0))
+(action' = 3 -> (docked' = 0 & at_3' = 0))
+(action' = 4 -> (docked' = 1)) 
+(action' = 5 -> (docked' = 0 & at_1' = 1))
+(action' = 6 -> (at_3' = 1)) 
+
+[SYS_LIVENESS]
+
+taskDone = 1 & docked = 1
+
+[ENV_TRANS]
+
+(action = 1) -> (at_1' = 1 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone & docked' = docked)
+(action = 2) -> ((at_1' = 0 & at_2' = 1 & at_3' = 0 & taskDone' = taskDone & docked' = docked) | (at_1' = 0 & at_2' = 0 & at_3' = 1 & taskDone' = taskDone & docked' = docked))
+(action = 3) -> ((at_1' = 0 & at_2' = 1 & at_3' = 0 & taskDone' = taskDone & docked' = docked) | (at_1' = 0 & at_2' = 0 & at_3' = 1 & taskDone' = taskDone & docked' = docked))
+#(action = 3) -> (at_1' = 0 & at_2'= 0 & at_3'  = 1 & taskDone' = taskDone & docked' = docked)
+(action = 4) -> (docked' = 0 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+(action = 5) -> (docked' = 1 & at_1' = 0 & at_2' = 0 & at_3' = 0 & taskDone' = taskDone)
+(action = 6) -> (taskDone' = 1 & docked' = docked & at_1' = at_1 & at_2' = at_2 & at_3' = at_3)
+
+(action = 0) -> (at_1' =  at_1) & (at_2' = at_2) & (at_3' = at_3) & (docked' = docked) & (taskDone' = taskDone)
+
+[ENV_LIVENESS]
+
+(action = 3) -> (at_1' = 0 & at_2' = 0 & at_3' = 1 & taskDone' = taskDone & docked' = docked)
+
+
+

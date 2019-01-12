@@ -1,0 +1,51 @@
+[INPUT]
+request1:0...6
+request2:0...6
+request3:0...6
+request4:0...6
+steps:0...20
+pos:1...6
+
+[OUTPUT]
+
+action: 0...3
+#0 = no motion, 1 = positive, 2 = negative
+
+[SYS_INIT]
+action = 0
+
+[ENV_INIT]
+request1 = 3
+request2 = 1
+request3 = 2
+request4 = 0
+steps = 0
+pos = 1
+
+[SYS_TRANS]
+steps' < 15
+(action' = 1)  ->  (pos' < 6)
+(action' = 2)  ->  (pos' > 1)
+(action' = 3)  ->  (pos' = request1')
+#(action' = 4)  ->  (pos' = 2 & request1' = 2)
+#(action' = 5)  ->  (pos' = 3 & request1' = 3)
+#(action' = 6)  ->  (pos' = 4 & request1' = 4)
+#(action' = 7)  ->  (pos' = 5 & request1' = 5)
+#(action' = 8)  ->  (pos' = 6 & request1' = 6)
+
+[SYS_LIVENESS]
+((request1' = 0) & (pos' = 1))
+
+[ENV_TRANS]
+
+(action = 0) -> ((pos'=pos)   & (request1' = request1) & (request2' = request2) & (request3' = request3) & (request4' = request4) & (steps' = 0))
+(action = 1) -> ((pos'=pos+1) & (request1' = request1) & (request2' = request2) & (request3' = request3) & (request4' = request4) & (steps' = steps+1))
+(action = 2) -> ((pos'+1=pos) & (request1' = request1) & (request2' = request2) & (request3' = request3) & (request4' = request4) & (steps' = steps+1))
+(action = 3) -> ((pos'=pos)   & (request1' = request2) & (request2' = request3) & (request3' = request4) & (steps' = 0))
+
+
+[ENV_LIVENESS]
+request2'= 0
+
+
+
